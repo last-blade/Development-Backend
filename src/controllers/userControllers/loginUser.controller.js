@@ -1,7 +1,7 @@
 import { generateAccessToken } from "../../utils/generateAccessToken.js";
 import { apiError, apiResponse, asyncHandler, User } from "../allImports.js";
 
-const login = asyncHandler(async (request, response) => {
+const loginUser = asyncHandler(async (request, response) => {
     const {email, password} = request.body;
 
     if(!email || !password){
@@ -31,4 +31,4 @@ const login = asyncHandler(async (request, response) => {
     )
 });
 
-export {login}
+export {loginUser}
