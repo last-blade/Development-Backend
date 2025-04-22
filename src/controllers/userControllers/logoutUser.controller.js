@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { apiError, apiResponse, asyncHandler, User } from "../allImports.js";
 
 const logoutUser = asyncHandler(async (request, response) => {
-    const accessToken = request?.cookies;
+    const accessToken = request.cookies?.accessToken;
 
     if(!accessToken){
         throw new apiError(404, "Unauthorized action denied, please login again")
