@@ -30,7 +30,7 @@ const userSchema = new Schema({
     clientData: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "",
+            ref: "Client",
         }
     ]
 }, {timestamps: true});
