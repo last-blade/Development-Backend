@@ -3,10 +3,10 @@ import { apiError } from "../utils/apiError.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import jwt from "jsonwebtoken";
 
-const authentication = asyncHandler(async (request, response, next) => {
+const authentication = asyncHandler(async (request, _, next) => {
     try {
             const token = request.cookies?.accessToken;
-        
+
             if(!token){
                 throw new apiError(401, "Please login, authentication failed")
             }
