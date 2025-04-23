@@ -4,4 +4,6 @@ import { createClient } from "../controllers/clientDataControllers/createClient.
 
 const router = Router();
 
-router.route("/create-client").post(authentication, createClient)
+router.route("/create-client").post(authentication, createClient);
+
+export default router;
