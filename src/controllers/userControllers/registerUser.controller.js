@@ -5,6 +5,10 @@ const registerUser = asyncHandler(async (request, response) => {
 
     email = email.toLowerCase(); 
 
+    if (password !== confirmPassword) {
+        throw new apiError(400, "Password and confirm password do not match");
+    }    
+
     if([fullname, email, password, confirmPassword, accountType].some((inputField) => inputField?.trim === "")){
         throw new apiError(404, "All fields are required")
     }
@@ -19,6 +23,7 @@ const registerUser = asyncHandler(async (request, response) => {
         email: email.toLowerCase(),
         password,
         fullname,
+        accountType
     });
 
     const foundUser = await User.findById(createdUser._id).select("-password");
