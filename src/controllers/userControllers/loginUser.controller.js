@@ -16,7 +16,7 @@ const loginUser = asyncHandler(async (request, response) => {
 
     const userId = foundUser._id;
 
-    const accessToken = generateAccessToken(userId);
+    const accessToken = await generateAccessToken(userId);
 
     const options = {
         httpOnly: true,
