@@ -21,10 +21,13 @@ app.use(cookieParser());
 app.use(express.static("public"));
 
 //importing routes
-import userRoute from "./routes/user.routes.js"
+import userRoute from "./routes/user.routes.js";
+import clientRoute from "./routes/client.routes.js";
 
 
-//UserRoute
+//UserRoutes
 app.use("/api/v1/users", userRoute);
 
+//ClinetRoutes
+app.use("/api/v1/clients", clientRoute);
 export { app }
