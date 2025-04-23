@@ -1,4 +1,4 @@
-import { apiError, asyncHandler, Client, User } from "../allImports.js";
+import { apiError, apiResponse, asyncHandler, Client, User } from "../allImports.js";
 
 const createClient = asyncHandler(async (request, response) => {
     const {material, t1, materialDescription, flameAdhesive, colorway, width} = request.body;
@@ -30,7 +30,9 @@ const createClient = asyncHandler(async (request, response) => {
     }, {new: true});
 
     return response.status(201)
-    .json(201, createdClient, "Client data created successfully")
+    .json(
+        new apiResponse(201, createdClient, "Client data created successfully")
+    )
 
 });
 
