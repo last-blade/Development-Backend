@@ -4,6 +4,7 @@ import { createClient } from "../controllers/clientDataControllers/createClient.
 import { viewClient } from "../controllers/clientDataControllers/viewClient.controller.js";
 import { editClient } from "../controllers/clientDataControllers/editClient.controller.js";
 import { deleteClient } from "../controllers/clientDataControllers/deleteClient.controller.js";
+import { searchClient } from "../controllers/clientDataControllers/searchClient.controller.js";
 
 const router = Router();
 
@@ -11,5 +12,6 @@ router.route("/create-client").post(authentication, createClient);
 router.route("/view-client/:clientId").get(authentication, viewClient)
 router.route("/edit-client/:clientId").put(authentication, editClient);
 router.route("/delete-client/:clientId").delete(authentication, deleteClient);
+router.route("search-client").get(authentication, searchClient)
 
 export default router;
