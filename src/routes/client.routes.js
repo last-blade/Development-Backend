@@ -12,6 +12,6 @@ router.route("/create-client").post(authentication, createClient);
 router.route("/view-client/:clientId").get(authentication, viewClient)
 router.route("/edit-client/:clientId").put(authentication, editClient);
 router.route("/delete-client/:clientId").delete(authentication, deleteClient);
-router.route("search-client").get(authentication, searchClient)
+router.route("/search-client").get(authentication, searchClient)
 
 export default router;
