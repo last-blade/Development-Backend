@@ -6,6 +6,7 @@ import { editClient } from "../controllers/clientDataControllers/editClient.cont
 import { deleteClient } from "../controllers/clientDataControllers/deleteClient.controller.js";
 import { searchClient } from "../controllers/clientDataControllers/searchClient.controller.js";
 import { viewTotalClient } from "../controllers/clientDataControllers/viewTotalClient.controller.js";
+import { viewAllClients } from "../controllers/clientDataControllers/viewAllClients.controller.js";
 
 const router = Router();
 
@@ -15,5 +16,6 @@ router.route("/edit-client/:clientId").put(authentication, editClient);
 router.route("/delete-client/:clientId").delete(authentication, deleteClient);
 router.route("/search-client").get(authentication, searchClient);
 router.route("/view-total").get(authentication, viewTotalClient);
+router.route("/view-all").get(authentication, viewAllClients)
 
 export default router;
