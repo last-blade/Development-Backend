@@ -14,11 +14,7 @@ const loginUser = asyncHandler(async (request, response) => {
         throw new apiError(404, "User with this email does not exists")
     }
 
-    console.log("user", foundUser)
-
     const isValidPassword = await foundUser.isPasswordCorrect(password);
-
-    console.log("valid ", isValidPassword)
 
     if(!isValidPassword){
         throw new apiError(401, "Password is incorrect")
