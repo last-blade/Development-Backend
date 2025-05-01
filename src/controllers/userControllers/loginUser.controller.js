@@ -8,10 +8,20 @@ const loginUser = asyncHandler(async (request, response) => {
         throw new apiError(404, "All fields are required")
     }
 
-    const foundUser = await User.findOne({email}).select("-password -accessToken");
+    const foundUser = await User.findOne({email});
 
     if(!foundUser){
         throw new apiError(404, "User with this email does not exists")
+    }
+
+    console.log("user", foundUser)
+
+    const isValidPassword = await foundUser.isPasswordCorrect(password);
+
+    console.log("valid ", isValidPassword)
+
+    if(!isValidPassword){
+        throw new apiError(401, "Password is incorrect")
     }
 
     const userId = foundUser._id;
@@ -24,10 +34,12 @@ const loginUser = asyncHandler(async (request, response) => {
         sameSite: "None",
     }
 
+    const loggedInUser = await User.findById(userId).select("-password -accessToken")
+
     return response.status(200)
     .cookie("accessToken", accessToken, options)
     .json(
-        new apiResponse(200, foundUser, "Login successfully")
+        new apiResponse(200, loggedInUser, "Login successfully")
     )
 });
 
