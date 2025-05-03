@@ -24,13 +24,13 @@ const loginUser = asyncHandler(async (request, response) => {
 
     const accessToken = await generateAccessToken(userId);
 
+    const loggedInUser = await User.findById(userId).select("-password -accessToken")
+
     const options = {
         httpOnly: true,
         secure: true,
         sameSite: "None",
     }
-
-    const loggedInUser = await User.findById(userId).select("-password -accessToken")
 
     return response.status(200)
     .cookie("accessToken", accessToken, options)
