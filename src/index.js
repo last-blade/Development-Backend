@@ -1,15 +1,17 @@
 import { app } from "./app.js";
 import { connectDB } from "./database/index.js";
 
-
-const PORT = process.env.PORT || 8000;
-
 connectDB()
-.then(() => {
-    app.listen(PORT, () => {
-        console.log(`Server is listening on http://localhost:${PORT}`)
-    })
-})
-.catch((error) => {
-    console.log(`Database connection failed!!! ${error.message}`);
-});
+  .then(() => {
+    const port = process.env.PORT || 8000;
+    const host = process.env.NODE_ENV === "production"
+      ? `https://development-backend.onrender.com`
+      : `http://localhost:${port}`;
+
+    app.listen(port, () => {
+      console.log(`Server is running on ${host}`);
+    });
+  })
+  .catch((error) => {
+    console.log("Error while connecting to database", error.message);
+  });
