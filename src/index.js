@@ -5,7 +5,7 @@ connectDB()
   .then(() => {
     const port = process.env.PORT || 8000;
     const host = process.env.NODE_ENV === "production"
-      ? `https://development-backend.onrender.com`
+      ? `https://developmentbackend.onrender.com`
       : `http://localhost:${port}`;
 
     app.listen(port, () => {
